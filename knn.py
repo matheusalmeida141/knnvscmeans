@@ -2,7 +2,6 @@
 from sklearn.impute import KNNImputer
 import pandas as pd
 import numpy as np
-import seaborn as sns
 import matplotlib.pyplot as plt
 # %%
 df = pd.read_csv("data/train1.csv")
@@ -19,19 +18,30 @@ for i in range(1, 1000):
     print(error)
     with open("knn.csv", mode="a") as fl:
         fl.write(f"{i},{error},knn\n")
+#%%
 
-# %%
+#%%
+# # 
+# # %%
+# result = pd.DataFrame({"x_0": result[:,0],
+#                         "x_1":result[:,1]})
+# # %%
+# plt.figure(dpi=400)
+# # Plota os dados originais
+# plt.scatter(x =  X.loc[index,"x_0"], y=X.loc[index,"x_1"], color="red", label="Original")
+# # Plota os dados imputados
+# plt.scatter(
+#     result.loc[index, "x_0"],
+#     result.loc[index, "x_1"],
+#     color="blue",
+#     label="Imputado",
+# )
+# # %%
+# # np.sqrt(np.sum(np.pow(X["x_1"] - df["KNN"], 2))/X.shape[0])
+# # %%
 
-sns.scatterplot(X, x="x_0", y="x_1",legend="auto")
-sns.scatterplot(df[X_train.index.isin(index)], x="x_0", y="KNN", legend="auto")
-plt.legend(["Original", "KNN Input"])
-plt.title("KNN Imputer ")
-# %%
-np.sqrt(np.sum(np.pow(X["x_1"] - df["KNN"], 2))/X.shape[0])
-# %%
 
-
-#     imputer = KNNImputer(n_neighbors=2)
+# #     imputer = KNNImputer(n_neighbors=2)
 #     result = imputer.fit_transform(X_train)
 
 #     X_aux= pd.DataFrame({
